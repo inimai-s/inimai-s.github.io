@@ -1,21 +1,27 @@
 {
-  "name": "aqc",
+  "name": "personal-website",
   "version": "1.0.0",
-  "description": "My personal website, built using [11ty](https://github.com/11ty/eleventy) with the help of [eleventy garden](https://github.com/binyamin/eleventy-garden).",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "eleventy --serve --quiet",
-    "compile": "eleventy",
-    "build": "eleventy"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i ./src/css/input.css -o ./dist/output.css --watch"
   },
-  "main": ".eleventy.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anirudhv27/personal-website.git"
+  },
   "keywords": [],
-  "author": "April Qiu Cheng",
+  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
-    "markdown-it": "^12.3.2",
-    "markdown-it-attrs": "^4.1.4",
-    "markdown-it-footnote": "^3.0.3",
-    "title-case": "^3.0.3"
+  "bugs": {
+    "url": "https://github.com/anirudhv27/personal-website/issues"
+  },
+  "homepage": "https://github.com/anirudhv27/personal-website#readme",
+  "dependencies": {
+    "autoprefixer": "^10.4.15",
+    "marked": "^7.0.5",
+    "postcss": "^8.4.29",
+    "tailwindcss": "^3.3.3"
   }
 }
