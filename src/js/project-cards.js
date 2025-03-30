@@ -1,61 +1,29 @@
 const projects = [
     {
-        title: "Nuro: Embedded SWE Intern",
-        image: "nuro.avif",
-        descriptionMarkdown: `- **Led** end-to-end **design, development, and deployment** of control panel for Nuro’s bots.
-- Addressed compatibility between browser-based development and **gRPC**, counteracting network latency and ensuring seamless operation.
-- **Saved hundreds of man-hours** in build time with new streamlined workflow.
+        title: "SpaceX: Starlink On-Orbit Reliability Software Intern",
+        image: "satellite.png",
+        descriptionMarkdown: `- Developed detection algorithms of solar array debris impacts for risk assessment and anomaly attribution; put an upper bound on MMOD incidence rate.
+- Established pipeline and criteria for magnet uniformity study which ruled out magnets as the source of undesired mode-shifting occurrences, a major issue in the propulsion system.
         `,
         demoLink: "#"
     },
     {
-        title: "SnapLingua: Learning on the go! (Scale Generative AI Hackathon)",
-        image: "snaplingua.png",
-        descriptionMarkdown: `- End-to-end language learning system leveraging **GPT-4** and **DALL-E** to automatically generate flashcards from daily browsing.
-- Built **Chrome Extension** to automatically translate words to target language and generate flashcards.
-- Made native iOS app using **Swift** to review flashcards on the go.
+        title: "The Polyglot Persuader (MIT NLP Course 6.8611)",
+        image: "attack.png",
+        descriptionMarkdown: `- Examined influence of multi-turn attacks on LLMs for low vs high-resource languages.
+- Tested the application of Continuous Adversarial Training (CAT) methods to better defend against misinformation.
+- Proposed further techniques for improving model robustness.
         `,
-        demoLink: "https://www.youtube.com/watch?v=ti76mkP7DKU&t=196s"
+        demoLink: "https://drive.google.com/file/d/1yGmWTxbeMIazfaZdlVylwU90HHbNQdDI/view"
     },
     {
-        title: "Socialyze: Friendship Discovery",
-        image: "socialyze.png",
-        descriptionMarkdown: `- Web-based forum for MIT students to discover people on campus.
-- Curated seamless UX with **Chakra UI** **(React.js)**.
-- Hosted **unsupervised ML**-based recommendation system to recommend ideal matches based on previous activity.
-- Built real-time direct and group messaging system from scratch **(Express.js, Socket.io)**.`,
-        demoLink: "https://www.youtube.com/watch?v=VRR51J8598w"
-    }, {
-        title: "Tango: AI Dance Coach (First Place Project at ShellHacks)",
-        image: "tango.png",
-        descriptionMarkdown: `- Implemented **MediaPipe**'s Pose Estimation algorithm to track limbs.
-- Processed video with live annotations using **OpenCV**, superimposing the performers' limbs on the user's body.
-- Used **dynamic time warping** to estimate real-time accuracy scores **(Python, FastAPI)**
-- Developed UI to upload, dance, and display results **(React.js, Chakra UI)**`,
-        demoLink: "https://www.youtube.com/watch?v=8-6WGpPql-4"
-    }, {
-        title: "Gesture-powered Car Interface",
-        image: "car-interface.jpg",
-        descriptionMarkdown: `- Demonstrated prototype for a gesture-based car control panel.
-- Utilized **ESP32**'s HC-06 **Bluetooth** and **WiFi** capabilities
-- Developed algorithm to detect hand gestures from images (developed with **OpenCV** and **Python**)
-- Integrated **Arducam** and **DFPlayer** to build a mobile-integrated experience.
-
-        `,
-        demoLink: "https://youtu.be/265pv4jGRmo?si=yWcmFZgmvyWKY6VC"
-    },
-    {
-        title: "Mission Connected",
-        image: "mission-connected.png",
-        descriptionMarkdown: `- Cross-platform forum for high school club communication. 
-- Storyboarded and implemented club selection, dashboard, and event publishing tabs
-- Developed admin tool for school administrators to approve new club proposals and provide feedback.
-- Implemented **Google OAuth** to make application secure and authenticated.
-
-`,
-        demoLink: "https://www.youtube.com/watch?v=RuD-W7nY72k"
-    },
-    // Add more project data as needed
+        title: "Computer-Aided Diagnosis for Alzheimer’s Disease Via GANs (MIT CV Course 6.8300)",
+        image: "brain.png",
+        descriptionMarkdown: `- Improved performance of a standard convolutional neural network model to classify brain MRI scans into various degrees of dementia.
+- Performed experiments with four different GAN-augmented CNN models to optimize classification accuracy.
+- Concluded SR GANs perform better due to their structure.`,
+        demoLink: "https://drive.google.com/file/d/1TJrx3EotwcJD38hOuwcnza9oT5SmMdir/view"
+    }, 
 ];
 
 function createProjectCard(project) {
@@ -85,7 +53,7 @@ function createProjectCard(project) {
     `;
 
     if (project.demoLink !== '#') {
-        cardBack.innerHTML = cardBack.innerHTML + `<a href="${project.demoLink}" class="text-blue-500 hover:underline">View Demo</a>`
+        cardBack.innerHTML = cardBack.innerHTML + `<a href="${project.demoLink}" class="text-blue-500 hover:underline">View Paper</a>`
     }
 
     cardInner.appendChild(cardFront);
