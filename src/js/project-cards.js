@@ -23,6 +23,14 @@ const projects = [
 - Performed experiments with four different GAN-augmented CNN models to optimize classification accuracy.
 - Concluded SR GANs perform better due to their structure.`,
         demoLink: "https://drive.google.com/file/d/1TJrx3EotwcJD38hOuwcnza9oT5SmMdir/view"
+    },
+    {
+        title: "MIT Airport Rideshare",
+        image: "airplane.png",
+        descriptionMarkdown: `- Built a rideshare web app using HTML, CSS, React, Javascript, and Git. Used MongoDB to store and access app data. Coded frontend and backend, built API, called get and post requests to API.
+- Deployed app online for use of MIT student body.
+- Won Most Responsive UI Award in the MIT Web Lab Competition.`,
+        demoLink: "#"
     }, 
 ];
 
