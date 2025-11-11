@@ -1,0 +1,119 @@
+{% include base_path %}
+
+{% if post.header.teaser %}
+  {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
+{% else %}
+  {% assign teaser = site.teaser %}
+{% endif %}
+
+{% if post.id %}
+  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+{% else %}
+  {% assign title = post.title %}
+{% endif %}
+
+<div class="{{ include.type | default: "list" }}__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    {% if include.type == "grid" and teaser %}
+      <div class="archive__item-teaser">
+        <img src=
+          {% if teaser contains "://" %}
+            "{{ teaser }}"
+          {% else %}
+            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+          {% endif %}
+          alt="">
+      </div>
+    {% endif %}
+
+    <h2 class="archive__item-title" itemprop="headline">
+      {% if post.link %}
+        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+      {% else %}
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </h2>
+    
+    {% if post.read_time %}
+      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
+    {% endif %}
+
+        {% if post.collection == 'teaching' %}
+            {% if post.dateend == 'present' %}
+              <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; Present </p>
+            {% else %}
+              <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; {{ post.dateend | default: "1900-01-01" | date: "%B" }} {{ post.dateend | default: "1900-01-01" | date: "%Y" }} </p>
+            {% endif %}
+        {% elsif post.collection == 'publications' %}
+            {% if post.preprint %}
+              <p>Preprint on <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+            {% elsif post.accepted %}
+              <p>Accepted for publication in <strong><i>{{ post.venue }}</i></strong>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
+            {% else %}
+                {% if post.isconf %}
+                  {% if post.category == 'conferences' %}
+                    {% if post.workshop %}
+                      <p>Presented at <strong><i>{{ post.venue }} {{ post.date | default: "1900-01-01" | date: "%Y" }} Workshop {{ post.workshop }}</i></strong></p>
+                    {% else %}
+                      <p>Presented at <strong><i>{{ post.venue }} {{ post.date | default: "1900-01-01" | date: "%Y" }}</i></strong></p>
+                    {% endif %}
+                  {% else %}
+                    {% if post.special %}
+                      <p>Published in <strong><i>{{ post.venue }} {{ post.date | default: "1900-01-01" | date: "%Y" }}</i></strong> {{ post.special }}</p>
+                    {% elsif post.workshop %}
+                      <p>Published in <strong><i>{{ post.venue }} {{ post.date | default: "1900-01-01" | date: "%Y" }} Workshop {{ post.workshop }}</i></strong></p>
+                    {% else %}
+                      <p>Published in <strong><i>{{ post.venue }} {{ post.date | default: "1900-01-01" | date: "%Y" }}</i></strong></p>
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  <p>Published in <strong><i>{{ post.venue }}</i></strong>, {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
+                {% endif %}
+            {% endif %}
+        {% elsif post.date %}
+         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+        {% endif %}
+
+    {% if post.excerpt and site.read_more != 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+    {% elsif post.excerpt and site.read_more == 'enabled' %}
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    {% endif %}
+    
+    {% if post.authors and post.paperurl and post.slidesurl %}
+      <p>{{ post.authors }}<br />
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">Download Paper</a>{% endif %}
+        {% if post.biorxiv %} | <a href="{{ post.biorxiv }}">bioRxiv</a>{% endif %}
+        {% if post.arxiv %} | <a href="{{ post.arxiv }}">arXiv</a>{% endif %}
+        {% if post.slidesurl %} | <a href="{{ post.slidesurl }}">Download Slides</a>{% endif %}
+      </p>
+    {% elsif post.authors and post.paperurl %}
+      <p>{{ post.authors }}<br />
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">Download Paper</a>{% endif %}
+        {% if post.biorxiv %} | <a href="{{ post.biorxiv }}">bioRxiv</a>{% endif %}
+        {% if post.arxiv %} | <a href="{{ post.arxiv }}">arXiv</a>{% endif %}
+      </p>
+    {% elsif post.authors and post.slidesurl %}
+      <p>{{ post.authors }}<br />
+        {% if post.biorxiv %}<a href="{{ post.biorxiv }}">bioRxiv</a>{% endif %}
+        {% if post.arxiv %}{% if post.biorxiv %} | {% endif %}<a href="{{ post.arxiv }}">arXiv</a>{% endif %}
+        {% if post.slidesurl %}{% if post.biorxiv or post.arxiv %} | {% endif %}<a href="{{ post.slidesurl }}">Download Slides</a>{% endif %}
+      </p>
+    {% elsif post.authors %}
+      <p>{{ post.authors }}</p>
+    {% elsif post.paperurl %}
+      <p>
+        {% if post.paperurl %}<a href="{{ post.paperurl }}">Download Paper</a>{% endif %}
+        {% if post.biorxiv %} | <a href="{{ post.biorxiv }}">bioRxiv</a>{% endif %}
+        {% if post.arxiv %} | <a href="{{ post.arxiv }}">arXiv</a>{% endif %}
+      </p>
+    {% elsif post.slidesurl %}
+      <p>
+        {% if post.biorxiv %}<a href="{{ post.biorxiv }}">bioRxiv</a>{% endif %}
+        {% if post.arxiv %}{% if post.biorxiv %} | {% endif %}<a href="{{ post.arxiv }}">arXiv</a>{% endif %}
+        {% if post.slidesurl %}{% if post.biorxiv or post.arxiv %} | {% endif %}<a href="{{ post.slidesurl }}">Download Slides</a>{% endif %}
+      </p>
+    {% endif %}
+
+  </article>
+</div>
