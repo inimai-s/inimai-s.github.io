@@ -9,7 +9,7 @@ redirect_from:
 
 I am a fourth year undergraduate student at [MIT EECS](https://www.eecs.mit.edu/), where I am grateful to be under the guidance of Professor [Nir Shavit](https://www.csail.mit.edu/person/nir-shavit) as a member of the [Shavit Lab](https://shavitlab.csail.mit.edu/). I have also conducted research with Professor [Ila Fiete](https://mcgovern.mit.edu/profile/ila-fiete/) as part of the [Fiete Lab](https://fietelab.mit.edu/) and at NASA's [Jet Propulsion Laboratory](https://www.jpl.nasa.gov/) under Dr. [Tom Lu](https://www.jpl.nasa.gov/site/research/thomaslu/) and Dr. [Ed Chow](https://www.jpl.nasa.gov/go/nsta/ed-chow/). I am a recipient of the 2025 MIT [Peter J. Eloranta Summer Undergraduate Research Fellowship](https://urop.mit.edu/students/resources/eloranta/prior-recipients/).
 
-I am curious about how structured computation emerges within and across layers of artificial and biological neural systems. I approach these questions through the lens of mechanistic interpretability—analyzing how circuits form, specialize, and scale—with the goal of uncovering principles that make large models more modular, efficient, and transparent.
+I am curious about how underlying network structure determines system behavior, through the lens of interpretability. My goal is to build efficient systems whose internal structures are understandable and to derive scalable principles that generalize circuit-level behavior in large models.
 
 News
 ======
