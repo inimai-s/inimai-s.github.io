@@ -44,6 +44,12 @@
             {% else %}
               <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; {{ post.dateend | default: "1900-01-01" | date: "%B" }} {{ post.dateend | default: "1900-01-01" | date: "%Y" }} </p>
             {% endif %}
+        {% elsif post.collection == 'research' %}
+            {% if post.dateend == 'present' or post.dateend == '' %}
+              <p> <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; Present </p>
+            {% else %}
+              <p> <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; {{ post.dateend | default: "1900-01-01" | date: "%B" }} {{ post.dateend | default: "1900-01-01" | date: "%Y" }} </p>
+            {% endif %}
         {% elsif post.collection == 'projects' %}
             {% if post.dateend == 'present' or post.dateend == '' %}
               <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; Present </p>
@@ -76,7 +82,7 @@
                   <p>Published in <strong><i>{{ post.venue }}</i></strong>, {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
                 {% endif %}
             {% endif %}
-        {% elsif post.date %}
+        {% elsif post.date and post.collection != 'research' and post.collection != 'projects' %}
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
 

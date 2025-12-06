@@ -20,11 +20,11 @@ main:
   - title: "Talks"
     url: /talks/    
 
-  - title: "Teaching"
-    url: /teaching/
-
   - title: "Industry/Technical Projects"
-    url: /projects/     
+    url: /projects/
+
+  - title: "Teaching"
+    url: /teaching/     
     
   # - title: "Portfolio"
   #   url: /portfolio/
