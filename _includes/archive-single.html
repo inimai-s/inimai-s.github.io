@@ -44,6 +44,12 @@
             {% else %}
               <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; {{ post.dateend | default: "1900-01-01" | date: "%B" }} {{ post.dateend | default: "1900-01-01" | date: "%Y" }} </p>
             {% endif %}
+        {% elsif post.collection == 'projects' %}
+            {% if post.dateend == 'present' or post.dateend == '' %}
+              <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; Present </p>
+            {% else %}
+              <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%B" }} {{ post.date | default: "1900-01-01" | date: "%Y" }} &mdash; {{ post.dateend | default: "1900-01-01" | date: "%B" }} {{ post.dateend | default: "1900-01-01" | date: "%Y" }} </p>
+            {% endif %}
         {% elsif post.collection == 'publications' %}
             {% if post.preprint %}
               <p>Preprint on <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
@@ -113,6 +119,8 @@
         {% if post.arxiv %}{% if post.biorxiv %} | {% endif %}<a href="{{ post.arxiv }}">arXiv</a>{% endif %}
         {% if post.slidesurl %}{% if post.biorxiv or post.arxiv %} | {% endif %}<a href="{{ post.slidesurl }}">Download Slides</a>{% endif %}
       </p>
+    {% elsif post.collection == 'projects' and post.projecturl %}
+      <p><a href="{{ post.projecturl }}">View Project</a></p>
     {% endif %}
 
   </article>

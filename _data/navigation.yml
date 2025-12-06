@@ -14,13 +14,16 @@ main:
   - title: "Publications"
     url: /publications/
 
+  - title: "Research Experience"
+    url: /research-experience/
+
   - title: "Talks"
     url: /talks/    
 
   - title: "Teaching"
     url: /teaching/
 
-  - title: "Projects"
+  - title: "Industry/Technical Projects"
     url: /projects/     
     
   # - title: "Portfolio"
