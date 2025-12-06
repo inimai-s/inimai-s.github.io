@@ -7,11 +7,10 @@ author_profile: true
 
 {% include base_path %}
 
-{% comment %} First show items with present/empty dateend {% endcomment %}
-{% for post in site.projects %}
-  {% if post.dateend == '' or post.dateend == 'present' %}
-    {% include archive-single.html %}
-  {% endif %}
+{% comment %} First show items with present/empty dateend, sorted by start date descending {% endcomment %}
+{% assign present_projects = site.projects | where_exp: "item", "item.dateend == '' or item.dateend == 'present'" | sort: "date" | reverse %}
+{% for post in present_projects %}
+  {% include archive-single.html %}
 {% endfor %}
 
 {% comment %} Then show items with dateend, sorted by dateend descending {% endcomment %}
