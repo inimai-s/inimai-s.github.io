@@ -8,14 +8,18 @@ author_profile: true
 {% include base_path %}
 
 {% comment %} First show items with present/empty dateend, sorted by start date descending {% endcomment %}
-{% assign present_research = site.research | where_exp: "item", "item.dateend == '' or item.dateend == 'present'" | sort: "date" | reverse %}
-{% for post in present_research %}
-  {% include archive-single.html %}
+{% assign sorted_research = site.research | sort: "date" | reverse %}
+{% for post in sorted_research %}
+  {% if post.dateend == '' or post.dateend == 'present' %}
+    {% include archive-single.html %}
+  {% endif %}
 {% endfor %}
 
 {% comment %} Then show items with dateend, sorted by dateend descending {% endcomment %}
-{% assign sorted_research = site.research | where_exp: "item", "item.dateend != '' and item.dateend != 'present'" | sort: "dateend" | reverse %}
-{% for post in sorted_research %}
-  {% include archive-single.html %}
+{% assign sorted_research_by_end = site.research | sort: "dateend" | reverse %}
+{% for post in sorted_research_by_end %}
+  {% unless post.dateend == '' or post.dateend == 'present' %}
+    {% include archive-single.html %}
+  {% endunless %}
 {% endfor %}
 
